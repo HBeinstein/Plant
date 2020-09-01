@@ -19,12 +19,20 @@
     //   }
     // };
 
-    export const changePlantState = (plant, property) => { // this function replaces both the above functions 
-      return {
-        ...plant,
-        [property]: (plant.property || 0) + 1
+    // const changeState = (state, prop, value) => ({ // this function replaces both the above functions
+    //   ...state,
+    //   [prop] : (state[prop] || 0) + value
+    // })
+
+    const changeState = (prop) => { // this function replaces the above function to make it more flexible when using other objects... in this case state = object 
+      return (value) => { // this fat arrow
+        return (state) => ({ // and this fat arrow are anonymous functions that are receiving value and then state as parameters
+          ...state, // state is the object that we are calling on and prop is the property we are altering
+        [prop]: (state.prop || 0) + value
+        })
       }
     };
 
+    
 
 
